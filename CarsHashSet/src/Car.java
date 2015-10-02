@@ -68,6 +68,43 @@ public class Car implements Comparable<Object> {
 		return this.getMake() + " " + this.getModel() + " " + this.getEngineDisplacement() + " " + this.getNCylinders();
 		
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + engineDisplacement;
+		result = prime * result + ((make == null) ? 0 : make.hashCode());
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + nCylinders;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Car other = (Car) obj;
+		if (engineDisplacement != other.engineDisplacement)
+			return false;
+		if (make == null) {
+			if (other.make != null)
+				return false;
+		} else if (!make.equals(other.make))
+			return false;
+		if (model == null) {
+			if (other.model != null)
+				return false;
+		} else if (!model.equals(other.model))
+			return false;
+		if (nCylinders != other.nCylinders)
+			return false;
+		return true;
+	}
 
 	@Override
 	public int compareTo(Object obj2) {
